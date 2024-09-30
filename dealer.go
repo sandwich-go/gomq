@@ -1,6 +1,10 @@
 package gomq
 
-import "github.com/sandwich-go/gomq/zmtp"
+import (
+	"context"
+
+	"github.com/sandwich-go/gomq/zmtp"
+)
 
 // DealerSocket is a ZMQ_DEALER socket type.
 // See: https://rfc.zeromq.org/spec:28
@@ -20,8 +24,8 @@ func NewDealer(mechanism zmtp.SecurityMechanism, id string) Dealer {
 // dealer socket to it. Currently the only transport
 // supported is TCP. The endpoint string should be
 // in the format "tcp://<address>:<port>".
-func (d *DealerSocket) Connect(endpoint string) error {
-	return ConnectDealer(d, endpoint)
+func (d *DealerSocket) Connect(ctx context.Context, endpoint string) error {
+	return ConnectDealer(ctx, d, endpoint)
 }
 
 var (

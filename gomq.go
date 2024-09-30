@@ -1,6 +1,7 @@
 package gomq
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"net"
@@ -176,18 +177,21 @@ func BindServer(s Server, endpoint string) (net.Addr, error) {
 // connecting to endpoints.
 type Dealer interface {
 	ZeroMQSocket
-	Connect(endpoint string) error
+	Connect(ctx context.Context, endpoint string) error
 }
 
 // ConnectDealer accepts a Dealer interface and an endpoint
 // in the format <proto>://<address>:<port>. It then attempts
 // to connect to the endpoint and perform a ZMTP handshake.
-func ConnectDealer(d Dealer, endpoint string) error {
+func ConnectDealer(ctx context.Context, d Dealer, endpoint string) error {
 	parts := strings.Split(endpoint, "://")
 
 Connect:
 	netConn, err := net.Dial(parts[0], parts[1])
 	if err != nil {
+		if ctx.Err() != nil {
+			return ctx.Err()
+		}
 		time.Sleep(d.RetryInterval())
 		goto Connect
 	}
