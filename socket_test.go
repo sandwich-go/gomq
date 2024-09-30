@@ -5,8 +5,8 @@ import (
 	"net"
 	"testing"
 
-	"github.com/myzhan/gomq/internal/test"
-	"github.com/myzhan/gomq/zmtp"
+	"github.com/sandwich-go/gomq/internal/test"
+	"github.com/sandwich-go/gomq/zmtp"
 )
 
 func TestNewClient(t *testing.T) {

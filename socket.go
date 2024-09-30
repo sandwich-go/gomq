@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/myzhan/gomq/zmtp"
+	"github.com/sandwich-go/gomq/zmtp"
 )
 
 // Socket is the base GoMQ socket type. It should probably

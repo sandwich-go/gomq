@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/myzhan/gomq/zmtp"
+	"github.com/sandwich-go/gomq/zmtp"
 )
 
 type ErrBadProto string

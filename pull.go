@@ -3,7 +3,7 @@ package gomq
 import (
 	"net"
 
-	"github.com/myzhan/gomq/zmtp"
+	"github.com/sandwich-go/gomq/zmtp"
 )
 
 // PullSocket is a ZMQ_PULL socket type.
